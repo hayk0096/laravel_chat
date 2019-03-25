@@ -16,7 +16,11 @@ Route::get('/', 'ChatController@getPublicChatPage')->name('public.chat.page');
 Route::post('/messages', 'ChatController@sendPublicMessage')->name('public.message.submit');
 
 
-Route::get('/private/{room}', ['as' => 'private.room.page', 'uses' => 'ChatController@getPrivateRoomPage']);
+Route::get('/private/{room}', [
+    'as' => 'private.room.page',
+    'uses' => 'ChatController@getPrivateRoomPage',
+    'middleware' => 'auth'
+]);
 
 Route::post('/room-messages', ['as' => 'private.message.submit', 'uses' => 'ChatController@sendPrivateMessage']);
 
