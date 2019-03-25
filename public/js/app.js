@@ -54502,7 +54502,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         sendMessage: function sendMessage() {
             axios.post('/room-messages', { body: this.textMessage, room_id: this.room.id, user: this.user.name });
 
-            this.messages.push('I: ' + this.textMessage);
+            this.messages.push('I:  ' + this.textMessage);
             this.textMessage = '';
         },
         actionUser: function actionUser() {
