@@ -54485,7 +54485,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }).listen('PrivateChat', function (_ref) {
             var data = _ref.data;
 
-            _this.messages.push(data.body);
+            _this.messages.push(data.user + ': ' + data.body);
             _this.isActive = false;
         }).listenForWhisper('typing', function (e) {
             _this.isActive = e;
@@ -54500,9 +54500,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         sendMessage: function sendMessage() {
-            axios.post('/room-messages', { body: this.textMessage, room_id: this.room.id });
+            axios.post('/room-messages', { body: this.textMessage, room_id: this.room.id, user: this.user.name });
 
-            this.messages.push(this.textMessage);
+            this.messages.push('I: ' + this.textMessage);
             this.textMessage = '';
         },
         actionUser: function actionUser() {

@@ -51,7 +51,7 @@
                     this.activeUsers.splice(this.activeUsers.indexOf(user), 1);
                 })
                 .listen('PrivateChat', ({data}) => {
-                    this.messages.push(data.body);
+                    this.messages.push(data.user + ': ' + data.body);
                     this.isActive = false;
                 })
                 .listenForWhisper('typing', (e) => {
@@ -66,9 +66,9 @@
         },
         methods: {
             sendMessage(){
-                axios.post('/room-messages', { body: this.textMessage, room_id: this.room.id });
+                axios.post('/room-messages', { body: this.textMessage, room_id: this.room.id, user: this.user.name });
 
-                this.messages.push(this.textMessage);
+                this.messages.push(`I: ${this.textMessage}`);
                 this.textMessage = '';
             },
             actionUser(){
